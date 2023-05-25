@@ -19,8 +19,9 @@ const navigate = useNavigate()
       axios.post("http://localhost:5001/api/loginpage", values) 
       .then(res =>{
         if(res.data.Status ==="success"){
+          const id = res.data.id
           if(res.data.data[0].roles === "admin"){
-            navigate("/Adminpage")
+            navigate(`/Adminpage/${id}`)
           }
           else if(res.data.data[0].roles === "owner"){
             const id = res.data.id
@@ -31,6 +32,10 @@ const navigate = useNavigate()
             const id = res.data.id
             navigate(`/Manager_page/${id}`)
           }
+          else if(res.data.data[0].roles === "super"){  
+            const id = res.data.id
+            navigate(`/superpage/${id}`)
+          }
           else{
             navigate("/LoginLevel4")
           }
@@ -38,7 +43,7 @@ const navigate = useNavigate()
             console.log("meassage wil be checked")
         }
 else{
-   alert(res.data.Message)
+   alert(res.data.Message) 
 }
       })
       .catch(err=> console.log(err));

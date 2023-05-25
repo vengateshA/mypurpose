@@ -16,7 +16,10 @@ function Manager_super_details() {
 
     useEffect(()=>{
         axios.get(`http://localhost:5001/api/manager_super_details/${id}`)
-        .then(res=>settraderdetails({...res.data[0]}))
+        .then(res=>{
+            settraderdetails({...res.data[0]})
+            console.log({...res.data[0]})
+        })
 
     },[id])
 

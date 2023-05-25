@@ -12,20 +12,33 @@ const company_branch_name = (req, res) => {
     });
 };
 
-
-
 const branch_info = (req, res) => {
 
-    const sqlGet = "SELECT * FROM loginform  "
-    db.query(sqlGet, (error, result) => {
-        if (error) {
-            console.log(error);
-        } else {
-            // res.json({result})
-            return res.send(result);
-        }
+    const sqlGet = "SELECT * FROM loginform"
+    db.query(sqlGet, (error, data) => {
+        if (error) return res.json({ Message: "error inside server" });
+  
+        return res.json({
+            status: 'message', data 
+        });
+
     });
 };
+
+
+// const branch_info = (req, res) => {
+
+//     const sqlGet = "SELECT * FROM loginform where id = ?"
+//     const {id} = req.params;
+//     db.query(sqlGet, id, (error, data) => {
+//         if (error) return res.json({ Message: "error inside server" });
+  
+//         return res.json({
+//             status: 'message', data 
+//         });
+
+//     });
+// };
 
 
 
@@ -52,9 +65,9 @@ const manager_super_details = (req, res) => {
 }
 
 const manager_add_super = (req, res) => {
-    const { roles, username, password, addedby, companyname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode } = req.body;
-    const sqlPost = "INSERT INTO loginform (roles, username, password, addedby, companyname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    db.query(sqlPost, [roles, username, password, addedby, companyname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode], (err, result) => {
+    const { roles, username, password, addedby, companyname, branchname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode } = req.body;
+    const sqlPost = "INSERT INTO loginform (roles, username, password, addedby, companyname, branchname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    db.query(sqlPost, [roles, username, password, addedby, companyname, branchname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode], (err, result) => {
         if (err) return res.json({ Error: "get trader error in sql" })
         return res.json({ Status: "success", Result: result })
         // if(error){
@@ -83,7 +96,7 @@ const manager_update_superbyid = (req, res) => {
         return res.json({ Status: "success", Result: result })
     });
 };
-
+ 
 // // update trader using put method
 const manager_update_super = (req, res) => {
     const { id } = req.params;
@@ -97,15 +110,14 @@ const manager_update_super = (req, res) => {
 
 
 const manager_work_super = (req, res)=>{
-    
-    const { work, id, username } = req.body;
-    const sqlpost ='insert into work (work, id, username) values (?,?,?)';
-    db.query(sqlpost,[work, id, username], (error, result)=>{
+    const {id} = req.params
+    const { work, username, addedby } = req.body; 
+    const sqlpost ='insert into work (work, username, addedby) values (?,?,?)';
+    db.query(sqlpost,[work, username, addedby, id], (error, result)=>{
         if (error) return res.json({ Error: "get trader error in sql" })
         return res.json({ Status: "success", Result: result })
-    })
-}
-
-
+    })  
+}  
+ 
 
 module.exports = { company_branch_name, branch_info, manager_delete, manager_add_super, manager_super_details, manager_update_super, manager_update_superbyid, manager_work_super }

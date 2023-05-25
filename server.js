@@ -7,6 +7,7 @@ const { admin_router } = require("./routes.js/admin_routes");
 const { owner_router } = require("./routes.js/owner_routes");
 const { manager_router } = require("./routes.js/manager_routes");
 const { super_routes } = require("./routes.js/super_routes");
+const { farmer_router } = require("./routes.js/farmer_routes");
 
 
 // const { routers } = require("./routes.js/admin");
@@ -14,15 +15,16 @@ const { super_routes } = require("./routes.js/super_routes");
 // const bodyParser = require("body-parser");
 const app = express();
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser()); 
 app.use(cors())
-
+ 
 app.use('/api', router )
 app.use('/api', admin_router)
 app.use('/api', owner_router)
 app.use('/api', manager_router)
 app.use('/api', super_routes)
-// app.use('/api', routers)
+app.use('/api', farmer_router)
+// app.use('/api', routers) 
 
 
 // const db = mysql.createPool({
@@ -31,7 +33,6 @@ app.use('/api', super_routes)
 //     password: "systemzts@2023",
 //     database: "chickenfarm"
 // });
-
 
 
 app.listen(5001, () => {

@@ -6,4 +6,4 @@ const super_routes = express.Router()
 super_routes.get('/work/:id', work)
 
 
-module.exports ={super_routes} 
+module.exports ={super_routes}  

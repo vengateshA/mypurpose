@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Newvalidation from '../Regex_validation/Newvalidation';
 
 function Owner_Update_manager() {
 
@@ -14,7 +15,7 @@ function Owner_Update_manager() {
         gender:"",
         phonenumber:"",
         alternumber:"",
-        email:"",
+        email:"", 
         address:"", 
         city:"",
         state:"",   
@@ -22,6 +23,22 @@ function Owner_Update_manager() {
        })
     const navigate = useNavigate()
     const {id} = useParams();
+
+    const [errors, seterrors] = useState({})
+
+    const [choice, setchoice] = useState([])
+
+    
+    useEffect(() => {
+        axios.get('http://localhost:5001/api/choice')
+
+            .then(res => { 
+                // console.log(res.data, 'fdafdsa')
+                setchoice(res.data)
+
+            })
+            .catch(err => console.log(err))
+    }, [])
     
     useEffect(()=>{
         axios.get(`http://localhost:5001/api/owner_update_managerbyid/${id}`)
@@ -50,6 +67,9 @@ function Owner_Update_manager() {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+
+        seterrors(Newvalidation(addtrader))
+
         axios.put(`http://localhost:5001/api/owner_update_manager/${id}`, addtrader)
         .then(res=>{
             if(res.data.Status === "success"){
@@ -62,101 +82,114 @@ function Owner_Update_manager() {
    
     return (
         <div>
-              <div>   
-                  <form onSubmit={handleSubmit}>
+        <div>   
+            <form onSubmit={handleSubmit}>
 <div className='container-fluid  d-flex justify-content-center '>
 <div className='card border-secondary bg- p-5'>
 <div className='text-center '>
-                            <h3>Update trader</h3>
-                        </div>
-                <div className='row '>
-                    <div className='col-sm-4'>
-                        <div className='card text-dark bg-light border-danger mb-3 p-5'>
+                      <h3>Update trader</h3>
+                  </div>
+          <div className='row '>
+              <div className='col-sm-4'>
+                  <div className='card text-dark bg-light border-danger mb-3 p-5'>
 
-                        {/* <div className='formgroup py-2'>
-                        <label htmlFor="name"> Username</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  roles:e.target.value})} value={addtrader.roles} id= 'name'  type="text" />
-                        </div>
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Username</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  addedby:e.target.value})} value={addtrader.addedby} id= 'name'  type="text" />
-                        </div>
-                     */}
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Username</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  username:e.target.value})} value={addtrader.username} id= 'name'  type="text" />
-                        </div>
-                     
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Password</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  password:e.target.value})} value={addtrader.password} id= 'name'  type="text" />
-                        </div>
-                         
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Companyname</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  companyname:e.target.value})} value={addtrader.companyname} id= 'name'  type="text" />
-                        </div>
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Personname</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  personname:e.target.value})} value={addtrader.personname} id= 'name'  type="text" />
-                        </div>
-                 </div>
-                 </div>
-                 <div className='col-sm-4'>
-                        <div className='card text-dark bg-light border-danger mb-3 p-5'>
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Gender</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  gender:e.target.value})}  value={addtrader.gender} id= 'name'  type="text" />
-                        </div>
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Phonenumber</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  phonenumber:e.target.value})} value={addtrader.phonenumber} id= 'name'  type="text" />
-                        </div>
+                  <div className='formgroup py-2'>
+                  <label htmlFor="name"> Username   {errors.username && <span className='text-danger' >{errors.username}</span>} </label>
+                  <input className="form-control " onChange={e=>setaddtrader({...addtrader,  username:e.target.value})} value={addtrader.username} name='username' id= 'name'  type="text" />
+                  </div>
+               
+                  <div className='formgroup py-2'>
+                  <label htmlFor="name"> Password {errors.password && <span className='text-danger' >{errors.password}</span>} </label>
+                  <input className="form-control " onChange={e=>setaddtrader({...addtrader,  password:e.target.value})} name='password' value={addtrader.password} id= 'name'  type="text" />
+                  </div>
                    
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Alternumber</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  alternumber:e.target.value})} value={addtrader.alternumber} id= 'name'  type="text" />
-                        </div>
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Email</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  email:e.target.value})} value={addtrader.email} id= 'name'  type="text" />
-                        </div>
-                   
-                 </div>
-                 </div>
-                 <div className='col-sm-4'>
-                        <div className='card text-dark bg-light border-danger mb-3 p-5'>
-                       
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Address</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  address:e.target.value})} value={addtrader.address} id= 'name'  type="text" />
-                        </div>
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> City</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  city:e.target.value})} value={addtrader.city} id= 'name'  type="text" />
-                        </div>
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> State</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  state:e.target.value})} value={addtrader.state} id= 'name'  type="text" />
-                        </div>
-                        <div className='formgroup py-2'>
-                        <label htmlFor="name"> Pincode</label>
-                        <input className="form-control " onChange={e=>setaddtrader({...addtrader,  pincode  :e.target.value})} value={addtrader.pincode} id= 'name'  type="text" />
-                        </div>
-                 </div>
-                 </div>
+                  <div className='formgroup py-2'>
+                  <label htmlFor="name"> Companyname {errors.companyname && <span className='text-danger' >{errors.companyname}</span>} </label>
+                  <input className="form-control " onChange={e=>setaddtrader({...addtrader,  companyname:e.target.value})} name='companyname' value={addtrader.companyname} id= 'name'  type="text" />
+                  </div>
+                  <div className='formgroup py-2'>
+                  <label htmlFor="name"> Personname {errors.personname && <span className='text-danger' >{errors.personname}</span>} </label>
+                  <input className="form-control " onChange={e=>setaddtrader({...addtrader,  personname:e.target.value})} name='personname' value={addtrader.personname} id= 'name'  type="text" />
+                  </div>
+           </div>
+           </div>
+           <div className='col-sm-4'>
+                  <div className='card text-dark bg-light border-danger mb-3 p-5'>
+                  <div className='formgroup py-2'>
+                                  <label htmlFor="">gender {errors.gender && <span className='text-danger' >{errors.gender}</span>}   </label>
+                                  <select className="form-control" onChange={e => setaddtrader({ ...addtrader, gender: e.target.value })}>
+                                      {
+                                          choice.map((opts, index) =>
+                                              <option key={index.id}>{opts.gender}
+                                              </option>)
+                                      }
+                                  </select>
+                              </div>
+                  <div className='formgroup py-2'>
+                  <label htmlFor="name"> Phonenumber {errors.phonenumber && <span className='text-danger' >{errors.phonenumber}</span>} </label>
+                  <input className="form-control " onChange={e=>setaddtrader({...addtrader,  phonenumber:e.target.value})} name='phonenumber' value={addtrader.phonenumber} id= 'name'  type="text" />
+                  </div>
              
-           
-                </div>
-                <button className='btn btn-info'  type='submit' >submit</button>
-                <button className='btn btn-danger mt-3'  onClick={() => { navigate(-1);   }} type='submit' >back</button>
+                  <div className='formgroup py-2'>
+                  <label htmlFor="name"> Alternumber {errors.alternumber && <span className='text-danger' >{errors.alternumber}</span>} </label>
+                  <input className="form-control " onChange={e=>setaddtrader({...addtrader,  alternumber:e.target.value})} value={addtrader.alternumber} name='alternumber' id= 'name'  type="text" />
+                  </div>
+                  <div className='formgroup py-2'>
+                  <label htmlFor="name"> Email {errors.email && <span className='text-danger' >{errors.email}</span>} </label>
+                  <input className="form-control " onChange={e=>setaddtrader({...addtrader,  email:e.target.value})} name='email' value={addtrader.email} id= 'name'  type="text" />
+                  </div>
              
-            </div>
-            </div>
-            </form>
-         
-        </div>
-        </div>
+           </div>
+           </div>
+           <div className='col-sm-4'>
+                  <div className='card text-dark bg-light border-danger mb-3 p-5'>
+                 
+                  <div className='formgroup py-2'>
+                  <label htmlFor="name"> Address {errors.address && <span className='text-danger' >{errors.address}</span>} </label>
+                  <input className="form-control " onChange={e=>setaddtrader({...addtrader,  address:e.target.value})} name='address' value={addtrader.address} id= 'name'  type="text" />
+                  </div>
+            
+                  <div className='formgroup py-2'>
+                  <label htmlFor="name"> Pincode {errors.pincode && <span className='text-danger' >{errors.pincode}</span>} </label>
+                  <input className="form-control " onChange={e=>setaddtrader({...addtrader,  pincode  :e.target.value})} name='pincode' value={addtrader.pincode} id= 'name'  type="text" />
+                  </div>
+                  <div className='formgroup py-2'>
+                                  <label htmlFor="">city {errors.city && <span className='text-danger' >{errors.city}</span>}  </label>
+                                  <select className='form-control py-2' onChange={e => setaddtrader({ ...addtrader, city: e.target.value })}>
+                                      {
+                                          choice.map((opts, index) =>
+                                              <option key={index.id}>{opts.city}
+                                              </option>)
+                                      }
+                                  </select>
+                              </div>
+
+                              <div className='formgroup py-2'>
+                                  <label htmlFor="">state {errors.state && <span className='text-danger' >{errors.state}</span>}  </label>
+                                  <select className='form-control py-2 ' onChange={e => setaddtrader({ ...addtrader, state: e.target.value })}>
+                                      {
+                                          choice.map((opts, index) =>
+                                              <option key={index.id}>{opts.state}
+                                              </option>)
+                                      }
+                                  </select>
+                              </div>
+
+
+           </div>
+           </div>
+       
+     
+          </div>
+          <button className='btn btn-info'  type='submit' >submit</button>
+          <button className='btn btn-danger mt-3'  onClick={() => { navigate('/Adminpage');   }} type='submit' >back</button>
+       
+      </div>
+      </div>
+      </form>
+   
+  </div>
+  </div>
     );
 }
 

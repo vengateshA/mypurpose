@@ -13,16 +13,16 @@ function Manager_page() {
         .then(res=>setcom_name({...res.data[0]}))
       
       },[id])
-
+ 
     return (
         <div> 
         <h1 className='companyname container-fluid card text-center'> {com_name.companyname}Private Limited <br /> <span className='text-secondary h6 '> {com_name.branchname} </span></h1>
         <div>
             <Outlet/>
-            </div>
+            </div>    
         </div>
 
-    );
+    ); 
 }
 
 export default Manager_page;

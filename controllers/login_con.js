@@ -1,7 +1,7 @@
 
 const jwt = require("jsonwebtoken");
 const { db } = require("../db");
- 
+  
 
 
 const loginpage = (req, res) => {
@@ -17,7 +17,7 @@ const loginpage = (req, res) => {
             res.cookie('token', token);
             return res.json({
                 Status: "success",data, id
-            })
+            })  
         }
         else {
             return res.json({ Message: "Please check your email and password" })
@@ -26,15 +26,28 @@ const loginpage = (req, res) => {
 }
 
 const allgetinfo = (req, res) => {
-    const sqlGet = "SELECT * FROM loginform";
-    db.query(sqlGet, (error, result) => {
+    const {id} = req.params
+    const sqlGet = "SELECT * FROM loginform where id = ?";
+    db.query(sqlGet, id, (error, result) => {
+
         if (error) {
-            console.log(error);
+            console.log(error);  
         } else {
-            // res.json({result})
-            return res.send(result);
+            res.json(result)   
         }
-    })
+    } )
+}
+
+const choice = (req, res) => {
+    const sqlGet = "SELECT * FROM choice";
+    db.query(sqlGet, (error, result) => {
+
+        if (error) {
+            console.log(error);  
+        } else {
+        return   res.json(result)   
+        }
+    } )
 }
 
 // app.get("/api/addchangeworker/:id",
@@ -68,4 +81,4 @@ const logout = (req,res) =>{
     return res.json({Status: "success"})
 }
 
-module.exports={loginpage, logout, allgetinfo}
+module.exports={loginpage, logout, allgetinfo, choice}

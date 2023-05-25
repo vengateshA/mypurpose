@@ -16,7 +16,7 @@ const company_name = (req, res) => {
 
 const company_info = (req, res) => {
 
-    const sqlGet = "SELECT * FROM loginform  "
+    const sqlGet = "SELECT * FROM loginform"
     db.query(sqlGet, (error, result) => {
         if (error) {
             console.log(error);
@@ -52,9 +52,9 @@ const owner_manager_details = (req, res) => {
 }
 
 const owner_add_manager = (req, res) => {
-    const { roles, username, password, addedby, companyname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode } = req.body;
-    const sqlPost = "INSERT INTO loginform (roles, username, password, addedby, companyname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    db.query(sqlPost, [roles, username, password, addedby, companyname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode], (err, result) => {
+    const { roles, username, password, addedby, companyname, branchname, personname,  gender, phonenumber, alternumber, email, address, city, state, pincode } = req.body;
+    const sqlPost = "INSERT INTO loginform (roles, username, password, addedby, companyname, branchname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    db.query(sqlPost, [roles, username, password, addedby, companyname, branchname, personname, gender, phonenumber, alternumber, email, address, city, state, pincode], (err, result) => {
         if (err) return res.json({ Error: "get trader error in sql" })
         return res.json({ Status: "success", Result: result })
         // if(error){

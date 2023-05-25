@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './Owner_actions.css'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 function Owner_actions() {
 
     const [manger, setmanager]= useState([])
+    const [getid, setgetid] = useState([])
+    const [search, setsearch] = useState('')
+    const {id} = useParams()
+
+
+    useEffect(()=>{
+        axios.get(`http://localhost:5001/api/allgetinfo/${id}`)
+        .then(res=>
+            {
+            setgetid({...res.data[0]})
+            console.log({...res.data[0]})   
+        }
+            )
+
+    },[id])
+
 
     useEffect(()=>{
         axios.get("http://localhost:5001/api/company_info")
@@ -14,8 +30,8 @@ function Owner_actions() {
         .catch(err=>console.log(err))
     },[])
 
-
-    const deletecontact = (id) =>{  
+ 
+    const deletecontact = (id) =>{   
         
         if(window.confirm("are you sure that you want to delete that contact ?"))
         {
@@ -28,30 +44,103 @@ function Owner_actions() {
         }
     }
 
+    const navigate = useNavigate()
+    const handleLogout = () =>{
+        axios.get("http://localhost:5001/api/logout")
+        .then(res=>{
+            if(res.data.Status ==="success"){
+          navigate("/")
+            } 
+            else{
+                alert("error")
+            }
+        })
+        .catch(err => console.log(err))
+    }
+    
 
-    // const filteredUsers = manger.filter((manager) => manager.addedby == "owner1@gmail.com");
+
+    // console.log(getid.username, 'its me' )
+  const usersname = getid.username
+  console.log(usersname,  'now')
+
+    const filteredUsers = manger.filter((manager) => manager.addedby === usersname);
 
     return (
+   <div className=''>
+<nav class="navbar navbar-expand-lg navbar-light  owner_nav_color">
+  <div class="container-fluid">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-light " aria-current="page" href="#"><h4>{getid.personname}</h4></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><Link className='link' to={'Owner_add_manager'}><button className=" btn btn-outline-info btn-large "> Add   </button></Link></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">  
+<Link className='head'   onClick={handleLogout}> <button className='btn btn-outline-danger btn-large ' >  Logout</button></Link></a>
+        </li>
+
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"   onChange={(e) => {
+    setsearch(e.target.value)
+  }}/>
+        {/* <button class="btn btn-outline-success" type="submit">Search</button> */}
+      </form>
+    </div>
+  </div>
+</nav>
+  {/* <div className='d-flex justify-content-between align-items-center  sub-color  py-2'> 
+
+    <div>
+<div className='card py-1   text-warning '>{getid.personname}</div> 
+</div>
+<div>
+<input type="text" className="form-control"
+  placeholder="search me"
+  onChange={(e) => {
+    setsearch(e.target.value)
+  }}
+/>
+</div>
+
+  <div className='text-left'>
+<Link className='link' to={'Owner_add_manager'}><button className=" btn btn-outline-info btn-large "> Add worker </button></Link>
+       </div>
+  
+<Link className='head'   onClick={handleLogout}> <button className='btn btn-outline-danger btn-large ' >  Logout</button></Link>
+
+   </div> */}
 
         <div  className='backgroundcolor'>
-        <div> 
-
-          </div>
-
-          <div className='text-center'>
-          <button className=" text-center"><Link className='link' to={'/owner_page/:id/Owner_add_manager'}> Add worker</Link></button> 
-          
-    {/* <button className='btn btn-outline-primary btn-large my-3 '><Link className='head'   onClick={handleLogout}>Logout</Link></button>  */}
-
-           </div>
 
         <div  className='container'>{
-           manger.map((trade, index)=>{
+           filteredUsers
+           .filter((val) => {
+            if (search === "") {
+              return val;
+            }
+            else if (
+              val.username.toLowerCase().includes(search.toLowerCase())
+            ) {
+              return val;
+            }
+    
+            
+          })
+           .map((trade, index)=>{
             return(
               <div className='companynameborder  container card text-center p-4  mt'>
              <div key={trade.id}     >
                  <div> {index+1}</div> 
-                <div className='  username h3 card '> {trade.username}</div>
+                <div className='  username h3 card '> {trade.username}   </div>
   <div className='buttonborder card d-flex justify-content-center py-3 d-flex justify-content-around'>
  
                 <button  className=" button-view btn btn-outline-info px-4"> <Link to={`Owner_update_manager/${trade.id}`} class="nav-link active" aria-current="page" >Update</Link></button>
@@ -64,12 +153,13 @@ function Owner_actions() {
              </div>
               
              </div>
+             
             )
            })
           }
         </div>
-    <h1 className='text-light'>ssss</h1>
-    <h1 className='text-light'>ssss</h1>
+    <h1 className='text-light'>zts technology</h1>
+    <h1 className='text-light'>zts technology</h1>
         <div className='fixed-bottom text-center h3 py-4  bg-secondary '>
         Contact ZTS: 9898786798
         </div>
@@ -77,7 +167,7 @@ function Owner_actions() {
 
             
         </div>
-
+        </div>
 
 
     );

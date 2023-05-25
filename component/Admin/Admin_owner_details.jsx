@@ -82,6 +82,10 @@ function Admin_owner_details() {
                             <h3  className="text-warning ">Address</h3>
                             <h4>{traderdetails.address}{traderdetails.city}{traderdetails.state}-{traderdetails.pincode}</h4>
                             </div>
+                            <div className="bg-secondary text-center rounded py-1 mt-1">
+                            <h3  className="text-warning ">Address</h3>
+                            <h4>{traderdetails.dateandtime}</h4>
+                            </div>
                         </div>
                     </div>
                     {/* <button className="btn btn btn-outline-primary px-3" onClick={()=>deletecontact(traderdetails.id)}>.delete</button> */}
