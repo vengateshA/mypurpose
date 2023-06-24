@@ -89,7 +89,7 @@ function Admin_owner_details() {
                         </div>
                     </div>
                     {/* <button className="btn btn btn-outline-primary px-3" onClick={()=>deletecontact(traderdetails.id)}>.delete</button> */}
-                    <button className='btn btn-danger'  onClick={() => { navigate('/Adminpage');   }} type='submit' >back</button>
+                    <button className='btn btn-danger'  onClick={() => { navigate(-1);   }} type='submit' >back</button>
                 </div>       
         </div>
     );

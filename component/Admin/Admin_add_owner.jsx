@@ -21,10 +21,10 @@ function Admin_add_owner() {
         pincode: "",
         state: ""
     })
+
+
     const [errors, seterrors] = useState({})
-
     const [choice, setchoice] = useState([])
-
 
     useEffect(() => {
         axios.get('http://localhost:5001/api/choice')
@@ -44,6 +44,7 @@ function Admin_add_owner() {
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
+
        seterrors(Newvalidation(addtrader))
 
 
@@ -53,7 +54,7 @@ function Admin_add_owner() {
                     navigate(-1)
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err)); 
 
 
     }
@@ -157,29 +158,16 @@ function Admin_add_owner() {
                                     </div>
 
 
-
-
-
-
-
-
-
-
-
                                 </div>
                             </div>
                             <button className='btn btn-info mb-3' type='submit' >submit</button>
 
-                            <button className='btn btn-danger' onClick={() => { navigate('/Adminpage'); }} type='submit' >back</button>
-
-
+                            <button className='btn btn-danger' onClick={() => { navigate(-1); }} type='submit' >back</button>
+                   
                         </div>
-
                     </div>
-
                 </div>
             </form>
-
         </div>
     );
 }

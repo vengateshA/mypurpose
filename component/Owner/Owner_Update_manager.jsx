@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Newvalidation from '../Regex_validation/Newvalidation';
 
+
+
 function Owner_Update_manager() {
 
     const [addtrader, setaddtrader]=useState({
@@ -23,6 +25,7 @@ function Owner_Update_manager() {
        })
     const navigate = useNavigate()
     const {id} = useParams();
+    console.log(id)
 
     const [errors, seterrors] = useState({})
 
@@ -182,7 +185,7 @@ function Owner_Update_manager() {
      
           </div>
           <button className='btn btn-info'  type='submit' >submit</button>
-          <button className='btn btn-danger mt-3'  onClick={() => { navigate('/Adminpage');   }} type='submit' >back</button>
+          <button className='btn btn-danger mt-3'  onClick={() => { navigate(1); }} type='submit' >back</button>
        
       </div>
       </div>

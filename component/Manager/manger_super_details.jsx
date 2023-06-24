@@ -10,8 +10,10 @@ function Manager_super_details() {
     
     const[traderdetails, settraderdetails]= useState([])
 
-   const navigate = useNavigate() 
+    
 
+   const navigate = useNavigate() 
+ 
     const{id} = useParams(); 
 
     useEffect(()=>{
@@ -23,7 +25,7 @@ function Manager_super_details() {
 
     },[id])
 
-    // const deletecontact = (id) =>{
+    // const deletecontact = (id) =>{ 
         
     //     if(window.confirm("are you sure that you want to delete that contact ?"))
     //     {

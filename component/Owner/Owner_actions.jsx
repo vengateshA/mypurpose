@@ -21,7 +21,7 @@ function Owner_actions() {
         }
             )
 
-    },[id])
+    },[id]) 
 
 
     useEffect(()=>{
@@ -68,7 +68,7 @@ function Owner_actions() {
 
     return (
    <div className=''>
-<nav class="navbar navbar-expand-lg navbar-light  owner_nav_color">
+<nav class="navbar navbar-expand-lg navbar-light  owner_nav_color sticky-top">
   <div class="container-fluid">
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,7 @@ function Owner_actions() {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active text-light " aria-current="page" href="#"><h4>{getid.personname}</h4></a>
+          <a class="nav-link active text-dark " aria-current="page" href="#"><h4>{getid.personname}</h4></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><Link className='link' to={'Owner_add_manager'}><button className=" btn btn-outline-info btn-large "> Add   </button></Link></a>
@@ -88,14 +88,18 @@ function Owner_actions() {
         </li>
 
       </ul>
+
+    </div>
+  </div>
+  <div>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"   onChange={(e) => {
     setsearch(e.target.value)
   }}/>
+  
         {/* <button class="btn btn-outline-success" type="submit">Search</button> */}
       </form>
-    </div>
-  </div>
+      </div>
 </nav>
   {/* <div className='d-flex justify-content-between align-items-center  sub-color  py-2'> 
 
@@ -127,14 +131,15 @@ function Owner_actions() {
             if (search === "") {
               return val;
             }
-            else if (
-              val.username.toLowerCase().includes(search.toLowerCase())
-            ) {
-              return val;
-            }
-    
-            
-          })
+            else  
+                  {
+                    const searchTerm = search.toLowerCase();
+                    return val.username.toLowerCase().includes(searchTerm) ||
+                          val.phonenumber.toLowerCase().includes(searchTerm) ;  
+                          // val.personname.toLowerCase().includes(searchTerm) ;
+
+                }
+          })  
            .map((trade, index)=>{
             return(
               <div className='companynameborder  container card text-center p-4  mt'>
@@ -145,7 +150,7 @@ function Owner_actions() {
  
                 <button  className=" button-view btn btn-outline-info px-4"> <Link to={`Owner_update_manager/${trade.id}`} class="nav-link active" aria-current="page" >Update</Link></button>
                 <button  className=" button-view btn btn-outline-success px-4 my-2"> <Link to={`Owner_manager_details/${trade.id}`} class="nav-link active" aria-current="page" >View</Link></button>
-                <button  className=" button-view btn btn-outline-secondary px-4"> <Link to={`Owner_update_manager/${trade.id}`} class="nav-link active" aria-current="page" >Viesssw</Link></button>
+                <button  className=" button-view btn btn-outline-secondary px-4"> <Link to={`Owner_update_manar/${trade.id}`} class="nav-link active" aria-current="page" >Their performance</Link></button>
                 <button  className=" button-view btn btn btn-outline-danger px-3 my-2" onClick={()=>deletecontact(trade.id)}>Delete</button>
          
   </div>

@@ -21,7 +21,7 @@ https://graphicmama.com/blog/website-color-schemes/
 
 .button{
 
-    text-decoration: none;
+    text-decoration: none; 
     background-color: rgb(135, 41, 243);
 
 
@@ -41,7 +41,7 @@ https://graphicmama.com/blog/website-color-schemes/
     padding-top: 35px;
     padding-bottom: 35px;
 }
-
+ 
 .companynameborder{
     background-color: #CBD5F0;
 }
@@ -64,5 +64,8 @@ button-view{
 }
 
 .owner_nav_color{
-    background-color:#194F92;
+    background-color:whitesmoke;
+    opacity: 0.9;
 }
+
+

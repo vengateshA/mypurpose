@@ -14,7 +14,7 @@ function Owner_add_manager() {
         username: "",
         password: "",
         addedby: '',
-        branchname: "",
+        branchname: "", 
         companyname:'',
         personname: "",
         gender: "",
@@ -43,6 +43,17 @@ function Owner_add_manager() {
             })
             .catch(err => console.log(err))
     }, [])
+
+
+
+    useEffect(() => {
+        setaddtrader(prevState => ({
+            ...prevState,
+            addedby: getid.username,
+            companyname: getid.companyname
+        }));
+    }, [getid]);
+
 
 
 
@@ -211,13 +222,13 @@ function Owner_add_manager() {
                                 </div>
 
                             </div>
-                            <div>
+                            {/* <div>
                                 <input type="checkbox" onChange={() => setaddtrader({ ...addtrader, addedby: getid.username })} name='addedby' /> <label htmlFor="">please tick the check box addedby  {errors.addedby && <span className='text-danger' >{errors.addedby}</span>}   </label>
                             </div>
                      
                             <div>
                                 <input type="checkbox" onChange={() => setaddtrader({ ...addtrader, companyname: getid.companyname })}  name='companyname' /> <label htmlFor="">please tick the check box companyname {errors.companyname && <span className='text-danger' >{errors.companyname}</span>}  </label>
-                            </div>
+                            </div> */}
                             <button className='btn btn-info mb-3 mt-3  ' type='submit' >submit</button>
 
                             <button className='btn btn-danger' onClick={() => { navigate(-1); }} type='submit' >back</button>

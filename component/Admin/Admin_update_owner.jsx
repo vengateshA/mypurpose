@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Newvalidation from '../Regex_validation/Newvalidation';
 
+
+
 function Admin_update_owner() {
 
     const [addtrader, setaddtrader]=useState({
@@ -22,6 +24,7 @@ function Admin_update_owner() {
        })
     const navigate = useNavigate()
     const {id} = useParams();
+    console.log(id, 'id')
 
     const [errors, seterrors] = useState({})
 
@@ -71,7 +74,7 @@ function Admin_update_owner() {
         axios.put(`http://localhost:5001/api/Admin_update_owner/${id}`, addtrader)
         .then(res=>{
             if(res.data.Status === "success"){
-                navigate('/Adminpage')
+                navigate(-1 )
             }
         })
         .catch(err => console.log(err));
@@ -176,11 +179,9 @@ function Admin_update_owner() {
 
                  </div>
                  </div>
-             
-           
                 </div>
                 <button className='btn btn-info'  type='submit' >submit</button>
-                <button className='btn btn-danger mt-3'  onClick={() => { navigate('/Adminpage');   }} type='submit' >back</button>
+                <button className='btn btn-danger mt-3'  onClick={() => { navigate(`/Adminpage/1`);}} type='submit' >back</button>
              
             </div>
             </div>

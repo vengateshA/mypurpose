@@ -13,7 +13,7 @@ function Manager_update_super() {
         companyname:"",
         personname:"",
         gender:"",
-        phonenumber:"", 
+        phonenumber:"",  
         alternumber:"",
         email:"",
         address:"", 
@@ -182,7 +182,7 @@ function Manager_update_super() {
      
           </div>
           <button className='btn btn-info'  type='submit' >submit</button>
-          <button className='btn btn-danger mt-3'  onClick={() => { navigate('/Adminpage');   }} type='submit' >back</button>
+          <button className='btn btn-danger mt-3'  onClick={() => { navigate(0);   }} type='submit' >back</button>
        
       </div>
       </div>
