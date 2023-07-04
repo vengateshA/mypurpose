@@ -7,20 +7,18 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function Html_Excel() {
   const [selectedDate, setSelectedDate] = useState();
-  const [returnDate, setreturnDate] = useState(null);
+
   const [datas, setDatas] = useState([]);
   const [before, setbefore] = useState([]);
   const [before_value, setbefore_value] = useState([]);
+  const [before_time, setbefore_time] = useState([]);
   const [single, setsingle] = useState([]);
-  const [device, setdevice] = useState("machine1");
-  const [device_value, setdevice_value] = useState()
+
   const [empty,   setempty] = useState([]);
   const [filterdata, setfilterdata] = useState([]);
-  const [filtertotal, setfiltertotal] = useState([]);
-  const [refreshTable, setRefreshTable] = useState(false);
-  const [resetTrigger, setResetTrigger] = useState(false);
-  const [disable, setdisable] = useState(false);
-  const initialFilterdata = []
+
+  const [filtertime, setfiltertime] = useState([]);
+     
 
   const reloadPage = () => {
     window.location.reload();
@@ -28,14 +26,11 @@ function Html_Excel() {
 
 
 
-  console.log(returnDate, 'return state')
-
-
   useEffect(() => {
     axios
       .get('http://localhost:5001/api/machine_pdf')
       .then((res) => {
-        setDatas(res.data);
+          setDatas(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -54,7 +49,9 @@ function Html_Excel() {
 
 
 
-  const id = 1
+  const id = 4
+
+
 
   useEffect(() => {
     axios.get(`http://localhost:5001/api/pdf_singlevalue/${id}`)
@@ -66,6 +63,11 @@ function Html_Excel() {
   }, []);
   console.log(id, 'use me')
 
+console.log(single)
+  console.log(single.spl_id, 'the little things hppened')
+
+  
+
 
   useEffect(() => {
     axios.get(`http://localhost:5001/api/total_empty_weight`)
@@ -74,33 +76,16 @@ function Html_Excel() {
         console.log(res.data)
       }
       )
-  }, [id])
+  }, [])
 
-  console.log(empty, 'empty_cage_weight')
-  const mac_id = single.mac_id
-  console.log(mac_id, 'ooi mac_id')
-
-
+  // console.log(empty, 'empty_cage_weight')
+  // const mac_id = single.mac_id
+  // console.log(mac_id, 'ooi mac_id')
 
 
 
-
-
-
-  // const filterdata = datas.filter((data) => data.id === parseInt(id, 10) && data.device_id === device);
-
-
-
-
-
-
-  //   const handleDateChange = (date) => {
-  //   // const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-  //   const formattedDates = (date)
-  //   setSelectedDate(formattedDates);
-  // };
-
-
+  
+   
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
   };
@@ -109,41 +94,34 @@ function Html_Excel() {
   console.log(typeof (selectedDate), 'selected date')
 
 
-  const filterdate = before.filter((data) => data.date === selectedDate);
+  const filterdate = before.filter((data) => data.date === selectedDate && data.spl_id === single.spl_id );
   console.log(filterdate, 'date is here')
   console.log(typeof (filterdate))
 
-  const filterbefore = before.filter((data) => data.date === selectedDate && data.farm_name === before_value);
+  const filterbefore = before.filter((data) => data.date === selectedDate && data.farm_name === before_value && data.spl_id === single.spl_id );
   console.log(filterbefore.map((data) => data.mac_id));
   const like = filterbefore.map((data) => data.mac_id)
+
+  const filtertimes = before.filter((data) => data.date === selectedDate && data.farm_name === before_value && data.time === before_time  && data.spl_id === single.spl_id  );
+  console.log(filtertimes.map((data) => data.mac_id), 'things happened me');
+  const likes = filtertimes.map((data) => data.mac_id)
+
+
   console.log(like, 'like is here')
   console.log(typeof (like))
 
-  console.log(returnDate, 'like is working')
 
-  // const filterdata = datas.filter((data) => data.device_id === device && data.mac_id === like)
-  // const filterdata = datas.filter((data) => data.device_id === device_value)
-  // const filterdata = datas.filter((data) => like.some((likeId) => likeId === data.mac_id));
-
-  const emptys = empty.filter((data)=> like.some((likeId) => likeId === data.mac_id));
-  
-
-  // const filtertotal = empty.filter((data) => data.device_id === device);
-
-
-  
   const clickme = () => {
-  handleReset()
-    const filterdata = datas.filter((data) => like.some((likeId) => likeId === data.mac_id));
+
+    const filterdata = datas.filter((data) => likes.some((likeId) => likeId === data.mac_id) );
     setfilterdata(filterdata)
-    const filtertotal = empty.filter((data) =>like.some((likeId) => likeId === data.mac_id));
-    setfiltertotal(filtertotal)
+
+    const filtertimes = empty.filter((data) =>likes.some((likeId) => likeId === data.mac_id) );
+    setfiltertime(filtertimes)
   }
 
-  const handleReset = () => {
-    setfilterdata(initialFilterdata);
-    setResetTrigger(!resetTrigger);
-  };
+
+
 
   return (
     <div>
@@ -153,24 +131,17 @@ function Html_Excel() {
           type="date"
           value={selectedDate || ''}
           onChange={handleDateChange}
-          min="1900-01-01" // Set minimum selectable date
-          max="2099-12-31" // Set maximum selectable date
+          min="1900-01-01" 
+          max="2099-12-31" 
         />
 
-        {/* {selectedDate && <p> Selected Date: {selectedDate.getFullYear()}-{selectedDate.getMonth() + 1}-{selectedDate.getDate()}</p>} */}
+        
       </div>
 
       <div>
-        {/* <div>
-            <select  type="text" onChange={(e)=>{setid(e.target.value)}} >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div> */}
- 
-
+        {single.companyname}, the little
+      </div>
+      <div>
         <div>
           <label>timing</label>
           <select className="form-control" onChange={e => setbefore_value(e.target.value) }>
@@ -181,9 +152,16 @@ function Html_Excel() {
           </select>
         </div>
 
-        {/* <div>
-          <input type="text" onChange={(e) => { setdevice(e.target.value) }} />
-        </div> */}
+        <div>
+          <label>timing</label>
+          <select className="form-control" onChange={e => setbefore_time(e.target.value) }>
+            <option value="">select the time</option>
+            {filterbefore.map((opts, index) => (
+              <option key={index}>{opts.time}</option>
+            ))}
+          </select>
+        </div>
+
 
 
 <div>
@@ -214,13 +192,10 @@ function Html_Excel() {
             <th>Trader_number</th>
             <th>Date</th>
             <th>Time</th>
-            
           </tr>
         </thead>
-     
         <tbody>
-
-          {filtertotal.map((tim, index) => (
+          {filtertime.map((tim, index) => (
             <tr key={index}>
             <td>{tim.driver_name}</td>
             <td>{tim.truck_number}</td>
@@ -229,8 +204,6 @@ function Html_Excel() {
             <td>{tim.trader_number}</td>
             <td>{tim.date}</td>
             <td>{tim.time}</td>
-
-        
               </tr>
           ))}
         </tbody>
@@ -244,14 +217,12 @@ function Html_Excel() {
             <th>number of empty cage</th>
             <th>number of loaded cage</th>
             <th>balance cage</th>
-
-
           </tr>
         </thead>
 
         <tbody>
 
-          {filtertotal.map((tim, index) => (
+          {filtertime.map((tim, index) => (
             <tr key={index}>
             <td>{tim['total_empty_cage']}</td>
             <td>{tim['total_loaded_cage']}</td>
@@ -282,14 +253,13 @@ function Html_Excel() {
                   <td>{data.loaded_cage}</td>
                   <td>{data.num_chicken}</td>
                   <td>{data.num_cages}</td>
+                  tx
                 </tr>
   
               ))
           }
         </tbody>
-
         <button onClick={clickme} >clickme</button>
-        <button onClick={handleReset} >Reset Values</button>
         <button onClick={reloadPage} >Reload</button>
       </table>
       <div>

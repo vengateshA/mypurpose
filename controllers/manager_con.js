@@ -31,7 +31,7 @@ const branch_info = (req, res) => {
 //     const sqlGet = "SELECT * FROM loginform where id = ?"
 //     const {id} = req.params;
 //     db.query(sqlGet, id, (error, data) => {
-//         if (error) return res.json({ Message: "error inside server" });
+//         if (error) return res.json({ Message: "error inside server" }); 
   
 //         return res.json({
 //             status: 'message', data 
@@ -42,12 +42,12 @@ const branch_info = (req, res) => {
 
 
 
-const manager_delete = (req, res) => {
+const manager_delete = (req, res) => { 
     const { id } = req.params;
-    const sqlDel = "DELETE FROM loginform where id=? ";
+    const sqlDel = "DELETE * FROM loginform where id=? "; 
     db.query(sqlDel, id, (error, result) => {
         if (error) return res.json({ Message: "error inside server" });
-        return res.json(result);
+        return res.json(result); 
     });
 };
 
@@ -109,14 +109,17 @@ const manager_update_super = (req, res) => {
 };
 
 
+
+
+
 const manager_work_super = (req, res)=>{
-    const {id} = req.params
-    const { work, username, addedby } = req.body; 
-    const sqlpost ='insert into work (work, username, addedby) values (?,?,?)';
-    db.query(sqlpost,[work, username, addedby, id], (error, result)=>{
+
+    const { work, username, addedby, farm_name, id } = req.body;  
+    const sqlpost ='insert into work (work, username, addedby, farm_name, id) values (?,?,?,?,?)';
+    db.query(sqlpost,[work, username, addedby, farm_name, id], (error, result)=>{
         if (error) return res.json({ Error: "get trader error in sql" })
         return res.json({ Status: "success", Result: result })
-    })  
+    })      
 }  
  
 

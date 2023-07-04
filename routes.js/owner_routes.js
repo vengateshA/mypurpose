@@ -14,4 +14,4 @@ owner_router.put('/owner_update_manager/:id', owner_update_manager )
 module.exports={owner_router}
 
 
-  
+   

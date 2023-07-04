@@ -10,7 +10,7 @@ const getinfo = (req, res) => {
             // res.json({result}) 
             return res.send(result);
         }
-    }) 
+    })  
 }  
  
 
@@ -132,4 +132,4 @@ const enable_user = (req, res)=>{
 
 
 
-module.exports={getinfo, deletelogin, Admin_owner_details, Admin_add_owner, Admin_update_owner, Admin_update_ownerbyid, Admin_update_owner, count_user, count_active, count_inactive, disable_user, enable_user }
+module.exports={getinfo, deletelogin, Admin_owner_details, Admin_add_owner, Admin_update_owner, Admin_update_ownerbyid, Admin_update_owner, count_user, count_active, count_inactive, disable_user, enable_user } 

@@ -106,7 +106,7 @@ function App() {
           <Route path="/Pratice" element={<Practice />} />
           <Route path="/pratice2" element={<Practice2 />} />
           <Route path="/xcel" element={<Xcel />} />
-          <Route path="/html_excel" element={<Html_Excel/>} />
+          <Route path="/html_excel/:id" element={<Html_Excel/>} />
           <Route path="/Date_picker" element={<MyDatePicker/>} />
           <Route path="/bluetooth" element={<Bluetooth/>} />
 

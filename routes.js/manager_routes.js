@@ -1,5 +1,5 @@
 const express = require('express')
-const { company_branch_name, branch_info, manager_delete, manager_super_details, manager_add_super, manager_update_superbyid, manager_update_super, manager_work_super } = require('../controllers/manager_con')
+const { company_branch_name, branch_info, manager_delete, manager_super_details, manager_add_super, manager_update_superbyid, manager_update_super, manager_work_super, manager_add_farmer } = require('../controllers/manager_con')
 
 const manager_router = express.Router()
 
@@ -13,6 +13,7 @@ manager_router.put('/manager_update_super/:id', manager_update_super)
 manager_router.post('/manager_work_super/:id', manager_work_super)
 
 
+
 module.exports={manager_router}
 
-    
+     
