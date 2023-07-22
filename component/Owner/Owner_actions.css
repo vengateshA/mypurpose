@@ -1,0 +1,71 @@
+/* 
+#FAFAFB - WHITE
+#EFB7BA - PINK MORE
+#E5C0C8 - LIGHT PINK
+#CBD5F0 - LIGHT PURPLE
+#194F92 - DARK BLUE
+https://graphicmama.com/blog/website-color-schemes/
+*/
+.backgroundcolor{
+    background-color:#dcebf6 ;
+}
+
+.companyname{
+    background-color:#CBD5F0;
+    color: #194F92;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-weight: 800;
+
+}
+
+.button{
+
+    text-decoration: none; 
+    background-color: rgb(135, 41, 243);
+
+
+}
+.link{
+    text-decoration: none;
+    color: rgb(180, 219, 249);
+    font-weight: 500;
+    font-style: italic;
+    font-size: large;   
+}
+
+
+.username{
+    color: rgb(97, 30, 59) ;
+    background-color: #EFB7BA ;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+ 
+.companynameborder{
+    background-color: #CBD5F0;
+}
+
+.buttonborder{
+    background-color:  #c1ceff ;
+    padding-left: 50px;
+    padding-right:50px;
+    
+}
+
+button-view{
+    margin-top: 24px;
+    
+}
+
+
+.sub-color{
+    background-color:#194F92;
+}
+
+.owner_nav_color{
+    background-color:whitesmoke;
+    opacity: 0.9;
+}
+
+
