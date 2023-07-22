@@ -1,0 +1,28 @@
+.pro_list{
+    list-style: none;
+    color: red;
+
+
+}
+
+.des{
+    color: orange;
+}
+.para{
+ font-family: 'Times New Roman', Times, serif   ;
+
+    text-align: justify;
+    font-weight: 500;
+}
+
+.imms{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.img1{
+    border-radius: 40px;
+}

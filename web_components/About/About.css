@@ -1,0 +1,114 @@
+.About_background{
+    /* background: url(https://img.freepik.com/free-vector/job-interview-conversation_74855-7566.jpg?size=626&ext=jpg&ga=GA1.2.458382374.1682501996&semt=ais);
+     */
+    background-color: #eff9fa;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.space{
+    padding-left: 10px;
+}
+
+.ul{
+    list-style: circle;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 35px;
+    font-size: medium;
+    font-weight: 500;
+
+}
+
+
+.home_ani4{
+    color: red;
+
+    background: rgb(71,113,235);
+    background: linear-gradient(90deg, rgba(71,113,235,0.8911939775910365) 0%, rgba(255,255,255,1) 100%);
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 20px;
+    padding-bottom:20px ;
+    margin-bottom: 30px;
+    color: rgb(148, 54, 25);
+
+    font-size: 20px;
+    font-weight: 100;
+    opacity: 10;
+    animation: ani4;
+    animation-duration: 3s;
+}
+
+
+@keyframes ani4 {
+
+
+    0%{
+       opacity: 0;
+       transform: translateY(100px);
+    }
+
+    25%{
+        opacity: 0;
+
+    }
+
+    50%{
+        opacity: 8;
+
+    }
+
+    100%{
+        opacity: 10;
+        transform: translateY(0px);
+    }
+
+
+    
+}
+
+.home_ani5{
+    word-spacing: 3px;
+
+    line-height: 25px;
+    text-align: justify;
+    margin-bottom: 20px;
+    color: black;
+    font-size: 25px;
+    font-weight: 800;
+    opacity: 10;
+    animation: ani5;
+    animation-duration: 2s;
+}
+
+
+
+@keyframes ani5 {
+
+
+    0%{
+       opacity: 0;
+       transform: translateY(100px);
+    }
+
+    25%{
+        opacity: 0;
+
+    }
+
+    50%{
+        opacity: 8;
+
+    }
+
+    100%{
+        opacity: 10;
+        transform: translateY(0px);
+    }
+
+
+    
+}
+
+

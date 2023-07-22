@@ -1,0 +1,251 @@
+    .navbar {
+    background-color:rgb(248, 250, 253);
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    }
+
+    .menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+    }
+
+    .nav-menu {
+    background-color:#060b26;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+    }
+
+    .nav-menu.active {
+    left: 0;
+    transition: 350ms;
+    }
+
+    .nav-text {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+    }
+
+    .nav-text a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+    }
+
+    .nav-text a:hover {
+    background-color: white;
+    background-color: rgb(81, 178, 207);
+    }
+
+    .nav-menu-items {
+    width: 100%;
+    }
+
+    .navbar-toggle {
+    background-color:  #060b26    ;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    }
+
+    span {
+    margin-left: 16px;
+    }
+
+    .icon{
+        color: red;
+        
+    }
+
+/* 
+    .ztslogo {
+        image-rendering: optimizeQuality; 
+        filter: brightness(1.2) contrast(1.2) saturate(1.2);
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        background-color: #ffffff;
+    } */
+    
+
+
+    /* .background{
+
+        background-color: #eff9fa;
+    }
+
+    .new{
+        background-color: red;
+        color: antiquewhite;
+        background-image: url;
+    }
+
+    @media (max-width: 800px) {
+        .ztslogo{
+            height: 100px;
+            width: 100px;
+            transition: 3s;
+            animation: zts;
+            animation-duration: 3s;
+        }
+        
+    }
+
+    @keyframes zts{
+        
+        from{
+            height: 400px;
+            width: 400px;
+        transform: rotateY(180deg);
+    }
+
+
+    to{
+        height: 100px;
+        width: 100px;
+    }
+    }
+
+
+    @media (min-width: 800px) {
+        .ztslogo{
+            height: 100px;
+            width: 100px;
+            transition: 3s;
+            
+            animation: ztss;
+            animation-duration: 3s;  
+        }
+    }
+
+    @keyframes ztss{
+        0%{
+            height: 800px;
+            width: 800px; 
+            transform:  translateX(500px)
+        }
+        25%{
+            height: 800px;
+            width: 800px;
+            
+        }
+        50%{
+            height: 800px;
+            width: 800px;
+        transform: rotateY(180deg) ;
+        }
+        100%{
+            height: 100px;
+            width: 100px;
+    
+
+        }
+
+    }
+
+    @media (min-width: 800px) {
+        .nav_name{
+            color:  rgb(148, 53, 19);
+            font-size: 25px;
+            font-weight: 500;
+
+            opacity:10 ;
+            animation: nav_name1;
+            animation-duration: 8s;
+        }
+        
+    }
+
+    @keyframes nav_name1{
+
+        0%{
+            opacity: 0;
+        }
+        25%{
+
+            opacity: 0;
+        }
+        50%{
+            opacity: 3;
+        }
+        100%{
+            opacity: 10;
+    
+
+        }
+
+
+    }
+
+    @media (max-width:800px) {
+        .nav_name{
+            color:  rgb(148, 53, 19);
+            font-size: 15px;
+            font-weight: 500;
+            opacity:10 ;
+            animation: nav_name2;
+            animation-duration: 5s;
+        }
+        
+    }
+
+    @keyframes nav_name2{
+
+        0%{
+            opacity: 0;
+        }
+        25%{
+
+            opacity: 0;
+        }
+        50%{
+            opacity: 3;
+        }
+        100%{
+            opacity: 10;
+    
+
+        }
+
+
+    }
+
+
+    /* .nav_name{
+        color:  rgb(148, 53, 19);
+        font-size: 20px;
+        font-weight: 500;
+        opacity: 0;
+        animation: nav_name;
+        animation-duration: 10s;
+    } */
+
+
+    /* .mar_space{
+        padding: 20px;
+    }
+
+
+    .mar{
+        font-size: large;
+        font-weight: 500;
+        background-color: rgb(97, 208, 241);
+    }  */

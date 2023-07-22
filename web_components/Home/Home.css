@@ -1,0 +1,361 @@
+    .size{
+        height: 500px;
+        width: 1800px;
+        
+    }
+
+    .cols{
+        color: red;
+    }
+
+    .ani{
+        color: red;
+        background-color: red;
+        height: 100px;
+        width: 100px;
+    }
+
+    .ani:hover{
+        background-color: rgb(239, 245, 245);
+        transition: 5s;
+        transform:  rotateX(360deg);
+    }
+
+    .home_box{
+        background-color: #4292e2;
+   height: 1px;
+        
+    }
+
+
+    .home_background{
+        /* background: url(https://t3.ftcdn.net/jpg/05/97/23/06/240_F_597230678_1oX2bf8e7V9dET1C1Xy5duSHlJq751oy.jpg); */
+
+        background: url(https://img.freepik.com/free-vector/job-interview-conversation_74855-7566.jpg?size=626&ext=jpg&ga=GA1.2.458382374.1682501996&semt=ais);
+        opacity: 5  ;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-color: #eff9fa;
+    }
+
+    /* Lets start journey with us */
+
+
+    @media (min-width: 800px){
+    .home_ani{
+        font-size: 30px;
+        font-weight: 500;
+        padding-top: 20px;
+        color: #083058;
+        transform: translateX(200px);
+        transition: 5s;
+        animation: home_ani;
+        animation-duration: 4s;
+        
+        
+    }
+
+    }
+
+    @keyframes home_ani {
+    0%{
+    opacity: 0;
+    transform: translateX(50px);
+    }
+    50%{
+    opacity: 0;
+    transform: translateX(100px);
+    }
+    100%{
+    opacity: 10;
+    transform: translateX(200px);
+    }
+    
+    }
+
+
+    @media (max-width: 800px){
+
+
+        .home_ani{
+            font-size: 30px;
+            font-weight: 500;
+            padding-top: 40px;
+            color: #083058;
+            transform: translateX(40px);
+            transition: 5s;
+            animation: home_ani_two;
+            animation-duration: 4s;
+            
+        }
+        
+        }
+        
+        @keyframes home_ani_two {
+        0%{
+        opacity: 0;
+        transform: translateX(10px);
+        }
+        50%{
+        opacity: 0;
+        transform: translateX(20px);
+        }
+        100%{
+        opacity: 10;
+        transform: translateX(40px);
+        }
+        
+        }
+
+
+        /* Three sentense */
+
+
+        .home_ani1{
+            padding-top: 20px; 
+ 
+       
+            font-size: 20px;
+            font-weight: 500;
+            opacity: 10;
+            color: #4292e2;
+            transform: translateY(0px); 
+            animation: ani1;
+            animation-duration: 5s;
+ 
+        }
+
+        @keyframes ani1 {
+
+
+            0%{
+               opacity: 0;
+               transform: translateY(100px);
+            }
+
+            25%{
+                opacity: 0;
+
+            }
+
+            50%{
+                opacity: 8;
+     
+            }
+        
+            100%{
+                opacity: 10;
+                transform: translateY(0px);
+            }
+
+      
+            
+        }
+
+
+        
+        .home_ani2{
+            padding-top: 20px;
+            font-size: 20px;
+            color: #58d0ee;
+            font-weight: 500;
+            opacity: 10;
+            animation: ani2;
+            animation-duration: 6s;
+        }
+
+        @keyframes ani2 {
+
+
+            0%{
+               opacity: 0;
+               transform: translateY(100px);
+            }
+
+            25%{
+                opacity: 0;
+
+            }
+
+            50%{
+                opacity: 8;
+            }
+        
+            100%{
+                opacity: 10;
+                transform: translateY(0px);
+            }
+
+      
+            
+        }
+        
+        .home_ani3{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-size: 20px;
+            font-weight: 500;
+            color: #9f62e6;
+            opacity: 10;
+            animation: ani3;
+            animation-duration: 6s;
+        }
+
+        @keyframes ani3 {
+
+
+            0%{
+               opacity: 0;
+               transform: translateY(100px);
+            }
+
+            25%{
+                opacity: 0;
+
+            }
+
+            50%{
+                opacity: 8;
+     
+            }
+        
+            100%{
+                opacity: 10;
+                transform: translateY(0px);
+            }
+
+      
+            
+        }
+
+
+        .home_ani4{
+            padding-top: 20px;
+            color: seagreen;
+            font-size: 20px;
+            font-weight: 600;
+            opacity: 10;
+            animation: ani4;
+            animation-duration: 6s;
+        }
+
+        
+        @keyframes ani4 {
+
+
+            0%{
+               opacity: 0;
+               transform: translateY(100px);
+            }
+
+            25%{
+                opacity: 0;
+
+            }
+
+            50%{
+                opacity: 8;
+     
+            }
+        
+            100%{
+                opacity: 10;
+                transform: translateY(0px);
+            }
+
+      
+            
+        }
+
+        .home_ani5{
+            text-align: justify;
+            padding: 10px;
+            color: black;
+            font-size: 15px;
+            font-weight: 500;
+            transform: translateY(0px);
+            opacity: 10;
+            animation: ani5;
+            animation-duration: 6s;
+        }
+
+
+        
+        @keyframes ani5 {
+
+
+            0%{
+               opacity: 0;
+               transform: translateY(100px);
+            }
+
+            25%{
+                opacity: 0;
+
+            }
+
+            50%{
+                opacity: 8;
+     
+            }
+        
+            100%{
+                opacity: 10;
+                transform: translateY(0px);
+            }
+
+      
+            
+        }
+
+
+
+
+    .withus{
+        padding-left: 50px;
+
+    }
+ 
+.quotes{
+
+    padding-top: 300px;
+    text-align: center;
+    font-size: 25px;
+    transform: translatex(0px);
+    font-weight: 500;
+    color: rgb(240, 141, 48);
+    animation: quotes;
+    animation-duration: 7s;
+}
+
+@keyframes quotes {
+
+    0%{
+        opacity: 0;
+        transform: translatex(100px);
+     }
+
+     25%{
+         opacity: 3;
+
+     }
+
+     50%{
+         opacity: 8;
+
+     }
+ 
+     100%{
+         opacity: 10;
+         transform: translatex(0px);
+     }
+
+    
+}
+
+
+
+
+

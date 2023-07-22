@@ -1,0 +1,42 @@
+.footer_bg{
+    background-color: rgb(180, 192, 196);
+}
+
+.contact_logo{
+    color: aliceblue;   
+
+}
+
+.contact_us{
+    color: aliceblue;
+}
+
+
+@media (max-width: 800px) {
+    .foot_add{
+        color: whitesmoke;
+        padding: 30px;
+    }
+
+    .foot_map{
+
+        padding: 30px;
+    }
+
+}
+
+
+@media (min-width: 800px) {
+    .foot_add{
+        color: whitesmoke;
+
+    }
+
+}
+
+.contact_logo:hover{
+    color: rgb(94, 94, 235);
+}
+.contact_us:hover{
+    color: rgb(94, 94, 235);
+}
